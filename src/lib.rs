@@ -1,4 +1,4 @@
-use std::{convert::TryFrom, time::Duration};
+use std::{str::FromStr, time::Duration};
 
 use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
@@ -50,11 +50,11 @@ impl Edmx {
     }
 }
 
-impl TryFrom<&str> for Edmx {
-    type Error = quick_xml::DeError;
+impl FromStr for Edmx {
+    type Err = quick_xml::DeError;
 
-    fn try_from(value: &str) -> Result<Self, Self::Error> {
-        quick_xml::de::from_str(value)
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        quick_xml::de::from_str(s)
     }
 }
 
@@ -237,7 +237,7 @@ mod tests {
 
     #[test]
     pub fn test_parse_folketinget_metadata() {
-        let edmx = Edmx::try_from(include_str!("../tests/metadata.xml")).unwrap();
+        let edmx = Edmx::from_str(include_str!("../tests/folketinget.xml")).unwrap();
 
         for set in edmx.default_schema().unwrap().entity_sets().unwrap() {
             println!("{:?}", set);
