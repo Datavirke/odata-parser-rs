@@ -243,6 +243,9 @@ mod tests {
             println!("{:?}", set);
         }
 
-        assert_eq!(50, edmx.default_schema().unwrap().entity_sets().unwrap().len());
+        assert_eq!(
+            50,
+            edmx.default_schema().unwrap().entity_sets().unwrap().len()
+        );
     }
 }
