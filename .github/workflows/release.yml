@@ -6,7 +6,7 @@ on:
     branches:
       - master
 
-name: Test & Tag
+name: Release
 
 jobs:
   lint:

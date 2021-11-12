@@ -240,7 +240,7 @@ mod tests {
         let edmx = Edmx::from_str(include_str!("../tests/folketinget.xml")).unwrap();
 
         for set in edmx.default_schema().unwrap().entity_sets().unwrap() {
-            println!("{:?}", set);
+            println!("{:#?}", set);
         }
 
         assert_eq!(
