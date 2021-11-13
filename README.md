@@ -7,7 +7,7 @@
 [Docs]: https://docs.rs/odata-parser-rs/badge.svg
 [docs.rs]: https://docs.rs/odata-parser-rs
 
-Deserializes OData 2.0 metadata.xml documents.
+Deserializes OData 3.0 metadata.xml documents.
 
 ---
 This is an absolute bare-minimum rough implementation of the EDMX 1.0 format for parsing using serde/quick-xml into a Rust structure.

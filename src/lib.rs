@@ -79,6 +79,8 @@ pub struct Schema {
     pub namespace: String,
     #[serde(rename = "EntityType", default)]
     pub entities: Vec<EntityType>,
+    #[serde(rename = "Association", default)]
+    pub associations: Vec<Association>,
     pub entity_container: Option<EntityContainer>,
 }
 
@@ -87,6 +89,12 @@ impl Schema {
         self.entity_container
             .as_ref()
             .map(|container| &container.entity_sets)
+    }
+
+    pub fn association_sets(&self) -> Option<&Vec<AssociationSet>> {
+        self.entity_container
+            .as_ref()
+            .map(|container| &container.association_sets)
     }
 }
 
@@ -97,7 +105,16 @@ pub struct EntityContainer {
     #[serde(rename = "EntitySet", default)]
     pub entity_sets: Vec<EntitySet>,
     #[serde(rename = "AssociationSet", default)]
-    pub assocation_sets: Vec<AssociationSet>,
+    pub association_sets: Vec<AssociationSet>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "PascalCase")]
+pub struct Association {
+    pub name: String,
+
+    #[serde(rename = "End")]
+    pub ends: [End; 2],
 }
 
 #[derive(Debug, Serialize, Deserialize)]
